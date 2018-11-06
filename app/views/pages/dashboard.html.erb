@@ -1,0 +1,27 @@
+<h1>Pages#dashboard</h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= user.try(:name) %>
+        </td>
+        <td>
+          <%= user.email %>
+        </td>
+        <% if user.admin? %>
+          <td><%= link_to "Remove admin", removeadmin_path(user) %></td>
+        <%else%>
+          <td><%= link_to "DO admin", addtoadmin_path(user) %></td>
+        <%end%>
+        <td><%= link_to "Remove user", userdestroy_path(user)%></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
